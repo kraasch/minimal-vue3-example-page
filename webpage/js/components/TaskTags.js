@@ -16,10 +16,15 @@ export default {
     init_tags: Array,
   },
 
+  computed: {
+    all_tags() {
+      return new Set(['all', ...this.init_tags]);
+    },
+  },
+
   data() {
     return {
-      all_tags: new Set(['all', ...this.init_tags]),
-      current_tags: new Set(['all']),
+      current_tags: new Set(),
       show_all: true,
     };
   },
@@ -39,6 +44,10 @@ export default {
       } else {
         if (this.is_active_tag(tag)) {
           this.current_tags.delete(tag);
+          // if last tag was deactivated re-activate all.
+          if (this.current_tags.size <= 0) {
+            this.show_all = true;
+          }
         } else {
           this.current_tags.add(tag);
           this.show_all = false;
