@@ -17,6 +17,7 @@ export default {
         id: this.task_data.length + 1,
         complete: false,
         name: new_item,
+        tag: 'new',
       });
       this.new_task = '';
     },
