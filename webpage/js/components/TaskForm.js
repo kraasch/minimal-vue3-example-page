@@ -11,7 +11,8 @@ export default {
 
   methods: {
     add_item() {
-      alert('toast');
+      this.$emit('myadd', this.new_task);
+      this.new_task = '';
     },
   },
 

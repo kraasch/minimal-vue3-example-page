@@ -7,16 +7,16 @@ export default {
     <section class='space-y-6'>
       <task-list :all_tasks='filters.todo_list' title='todo'/>
       <task-list :all_tasks='filters.done_list' title='done'/>
-      <task-form/>
+      <task-form @myadd='add_item'/>
     </section>
   `,
 
   methods: {
-    add_item() {
+    add_item(new_item) {
       this.task_data.push({
         id: this.task_data.length + 1,
         complete: false,
-        name: this.new_task,
+        name: new_item,
       });
       this.new_task = '';
     },
