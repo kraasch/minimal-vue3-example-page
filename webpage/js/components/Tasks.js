@@ -39,9 +39,9 @@ export default {
   data() {
     return {
       task_data: [
-        { id: 1, complete: false, name: 'Buy wood' },
-        { id: 2, complete: false, name: 'Pile up wood' },
-        { id: 3, complete: false, name: 'Light wood' },
+        { id: 1, complete: false, name: 'Buy wood', tag: 'math', },
+        { id: 2, complete: false, name: 'Pile up wood', tag: 'science', },
+        { id: 3, complete: false, name: 'Light wood', tag: 'math', },
       ],
     }
   },
