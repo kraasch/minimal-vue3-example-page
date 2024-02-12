@@ -5,7 +5,7 @@ export default {
   template: `
     <section v-show='all_tasks.length'>
       <h2 class='font-bold mb-2'>{{ title }}</h2>
-      <ul>
+      <ul class='border border-gray-600 divide-y divide-gray-600'>
         <task 
           v-for='a_task in all_tasks'
           :key='a_task.id'
