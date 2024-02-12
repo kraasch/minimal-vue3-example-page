@@ -29,23 +29,37 @@ export default {
 
   methods: {
     is_active_tag(tag) {
-      return this.current_tags.has(tag);
+      if (tag === 'all') {
+        return this.show_all;
+      } else {
+        return this.current_tags.has(tag);
+      }
     },
     toggle_tag(tag) {
-      if (this.is_active_tag(tag)) {
-        this.current_tags.delete(tag);
+      if (tag === 'all') {
+        this.show_all = !this.show_all;
+        this.current_tags.clear();
       } else {
-        this.current_tags.add(tag);
+        if (this.is_active_tag(tag)) {
+          this.current_tags.delete(tag);
+        } else {
+          this.current_tags.add(tag);
+          this.show_all = false;
+        }
       }
     },
   },
 
   computed: {
     list_tags() {
-      return new Set(this.all_tasks.map(t => t.tag));
+      return ['all', ...new Set(this.all_tasks.map(t => t.tag))];
     },
     filtered_tasks() {
-      return this.all_tasks.filter(t => this.current_tags.has(t.tag))
+      if (this.show_all) {
+        return this.all_tasks;
+      } else {
+        return this.all_tasks.filter(t => this.current_tags.has(t.tag))
+      }
     },
   },
 
@@ -56,6 +70,7 @@ export default {
   data() {
     return {
       current_tags: new Set(),
+      show_all: true,
     };
   },
 
