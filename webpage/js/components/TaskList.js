@@ -1,6 +1,12 @@
 import Task from './Task.js';
+import TaskTags from './TaskTags.js';
 
 export default {
+
+  components: {
+    'task': Task,
+    'task-tags': TaskTags,
+  },
 
   template: `
     <section v-show='all_tasks.length'>
@@ -10,14 +16,7 @@ export default {
           ({{ all_tasks.length }})
         </span>
       </h2>
-      <div class='flex gap-2'>
-        <button
-          @click='toggle_tag(a_tag)'
-          v-for='a_tag in list_tags' 
-          class='border rounded px-1 py-px text-xs'
-          :class="{'border-blue-500 text-blue-500' : is_active_tag(a_tag)}"
-        >{{ a_tag }}</button>
-      </div>
+      <task-tags :init_tags='all_tasks.map(t => t.tag)' @change='update_tags'/>
       <ul class='border border-gray-600 divide-y divide-gray-600 mt-6'>
         <task 
           v-for='a_task in filtered_tasks'
@@ -28,56 +27,33 @@ export default {
     </section>
   `,
 
-  methods: {
-    is_active_tag(tag) {
-      if (tag === 'all') {
-        return this.show_all;
-      } else {
-        return this.current_tags.has(tag);
-      }
-    },
-    toggle_tag(tag) {
-      if (tag === 'all') {
-        this.show_all = !this.show_all;
-        this.current_tags.clear();
-      } else {
-        if (this.is_active_tag(tag)) {
-          this.current_tags.delete(tag);
-        } else {
-          this.current_tags.add(tag);
-          this.show_all = false;
-        }
-      }
-    },
-  },
-
-  computed: {
-    list_tags() {
-      return ['all', ...new Set(this.all_tasks.map(t => t.tag))];
-    },
-    filtered_tasks() {
-      if (this.show_all) {
-        return this.all_tasks;
-      } else {
-        return this.all_tasks.filter(t => this.current_tags.has(t.tag))
-      }
-    },
-  },
-
-  components: {
-    'task': Task,
+  props: {
+    all_tasks: Array,
+    title: String,
   },
 
   data() {
     return {
-      current_tags: new Set(),
       show_all: true,
+      current_tags: [],
     };
   },
 
-  props: {
-    all_tasks: Array,
-    title: String,
+  methods: {
+    update_tags(data) {
+      this.current_tags = data.current_tags;
+      this.show_all = data.show_all;
+    },
+  },
+
+  computed: {
+    filtered_tasks() {
+      if (this.show_all) {
+        return this.all_tasks;
+      } else {
+        return this.all_tasks.filter(t => this.current_tags.has(t.tag));
+      }
+    },
   },
 
 };
