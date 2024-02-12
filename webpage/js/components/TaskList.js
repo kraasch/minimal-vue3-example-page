@@ -14,7 +14,8 @@ export default {
         <button
           @click='toggle_tag(a_tag)'
           v-for='a_tag in list_tags' 
-          :class="{'border rounded px-1 py-px text-xs': true, 'bg-white text-black' : is_active_tag(a_tag)}"
+          class='border rounded px-1 py-px text-xs'
+          :class="{'border-blue-500 text-blue-500' : is_active_tag(a_tag)}"
         >{{ a_tag }}</button>
       </div>
       <ul class='border border-gray-600 divide-y divide-gray-600 mt-6'>
