@@ -37,12 +37,16 @@ export default {
     },
   },
 
+  created() {
+    let url = 'http://localhost:3002/tasks';
+    fetch(url)
+      .then(response => response.json())
+      .then(data => this.task_data.push(...data));
+  },
+
   data() {
     return {
       task_data: [
-        { id: 1, complete: false, name: 'Buy wood', tag: 'math', },
-        { id: 2, complete: false, name: 'Pile up wood', tag: 'science', },
-        { id: 3, complete: false, name: 'Light wood', tag: 'math', },
       ],
     }
   },

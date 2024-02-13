@@ -1,0 +1,28 @@
+{
+  "tasks": [
+    {
+      "id": 1,
+      "complete": false,
+      "name": "Buy wood",
+      "tag": "environment"
+    },
+    {
+      "id": 2,
+      "complete": false,
+      "name": "Chop wood",
+      "tag": "money"
+    },
+    {
+      "id": 3,
+      "complete": false,
+      "name": "Pile wood",
+      "tag": "science"
+    },
+    {
+      "id": 4,
+      "complete": false,
+      "name": "Burn wood",
+      "tag": "math"
+    }
+  ]
+}
