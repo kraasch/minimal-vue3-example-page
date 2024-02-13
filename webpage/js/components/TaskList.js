@@ -16,7 +16,11 @@ export default {
           ({{ all_tasks.length }})
         </span>
       </h2>
-      <task-tags :init_tags='all_tasks.map(t => t.tag)' @change='update_tags'/>
+      <task-tags 
+        :init_tags='all_tasks.map(t => t.tag)' 
+        v-model:current_tags='current_tags'
+        v-model:show_all='show_all'
+      />
       <ul class='border border-gray-600 divide-y divide-gray-600 mt-6'>
         <task 
           v-for='a_task in filtered_tasks'
@@ -35,7 +39,7 @@ export default {
   data() {
     return {
       show_all: true,
-      current_tags: [],
+      current_tags: new Set(),
     };
   },
 

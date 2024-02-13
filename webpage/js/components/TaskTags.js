@@ -13,20 +13,17 @@ export default {
       `,
 
   props: {
+    // primitives.
+    show_all: Boolean,
+    // objects.
     init_tags: Array,
+    current_tags: Set,
   },
 
   computed: {
     all_tags() {
       return new Set(['all', ...this.init_tags]);
     },
-  },
-
-  data() {
-    return {
-      current_tags: new Set(),
-      show_all: true,
-    };
   },
 
   methods: {
@@ -39,25 +36,20 @@ export default {
     },
     toggle_tag(tag) {
       if (tag === 'all') {
-        this.show_all = !this.show_all;
+        this.$emit('update:show_all', !this.show_all);
         this.current_tags.clear();
       } else {
         if (this.is_active_tag(tag)) {
           this.current_tags.delete(tag);
           // if last tag was deactivated re-activate all.
           if (this.current_tags.size <= 0) {
-            this.show_all = true;
+            this.$emit('update:show_all', true);
           }
         } else {
           this.current_tags.add(tag);
-          this.show_all = false;
+          this.$emit('update:show_all', false);
         }
       }
-      let data = {
-        'current_tags': this.current_tags,
-        'show_all': this.show_all,
-      };
-      this.$emit('change', data);
     },
   },
 
