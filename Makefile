@@ -5,3 +5,6 @@ view:
 
 serve:
 	npx json-server db.json -p 3002
+
+end_serve:
+	killall node

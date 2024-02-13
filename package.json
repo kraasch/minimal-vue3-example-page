@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "start": "npx serve & npx json-server db.json -p 3002"
+    "start": "npx serve ./webpage/ & npx json-server db.json -p 3002"
   },
   "devDependencies": {
     "json-server": "^1.0.0-alpha.23"
