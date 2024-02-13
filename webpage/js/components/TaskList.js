@@ -1,15 +1,17 @@
 import Task from './Task.js';
 import TaskTags from './TaskTags.js';
+import Panel from './Panel.js';
 
 export default {
 
   components: {
     'task': Task,
     'task-tags': TaskTags,
+    'panel': Panel,
   },
 
   template: `
-    <section v-show='! is_hidden && all_tasks.length' class='w-60 bg-gray-700 p-4 border border-gray rounded-lg'>
+    <panel v-show='! is_hidden && all_tasks.length' class='w-60'>
       <div class='flex justify-between items-start'>
         <h2 class='font-bold mb-2'>
           {{ title }}
@@ -32,7 +34,10 @@ export default {
         ></task>
       </ul>
       <slot/>
-    </section>
+      <template #footer>
+        This is the end, my friend.
+      </template>
+    </panel>
   `,
 
   props: {
