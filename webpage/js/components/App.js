@@ -21,6 +21,9 @@ export default {
             Hello World!
           </template>
           How are you doing?
+          <template #footer>
+            This is the end, my friend.
+          </template>
         </panel>
 
         <panel>

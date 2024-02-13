@@ -17,7 +17,11 @@ export default {
        <slot name='default'/>
        <footer 
         v-if='$slots.footer' 
-        class='font-italic text-xs text-center divide-y divide-white divide-dashed'
+        :class="{
+          'text-xs text-center divide-y divide-dashed' : true,
+          'divide-black' : theme === 'light',
+          'divide-white' : theme === 'dark',
+        }"
       >
         <div class='pt-2'></div>
         <div class='p-2'>
