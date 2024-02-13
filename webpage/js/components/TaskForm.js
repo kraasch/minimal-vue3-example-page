@@ -2,9 +2,9 @@ export default {
 
   template: `
       <form @submit.prevent='add_item'>
-        <div class='border border-gray-600 text-black'>
-          <input v-model='new_task' placeholder='New task...' class='p-2'/>
-          <button type='submit' class='p-2 bg-white border-l'>Add</button>
+        <div class='border border-gray-600 text-black flex grow'>
+          <input v-model='new_task' placeholder='New task...' class=''/>
+          <button type='submit' class='bg-white border-l'>Add</button>
         </div>
       </form>
   `,

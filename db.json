@@ -2,13 +2,13 @@
   "tasks": [
     {
       "id": 1,
-      "complete": false,
+      "complete": true,
       "name": "Buy wood",
       "tag": "environment"
     },
     {
       "id": 2,
-      "complete": false,
+      "complete": true,
       "name": "Chop wood",
       "tag": "money"
     },

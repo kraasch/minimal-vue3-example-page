@@ -9,13 +9,16 @@ export default {
   },
 
   template: `
-    <section v-show='all_tasks.length'>
-      <h2 class='font-bold mb-2'>
-        {{ title }}
-        <span>
-          ({{ all_tasks.length }})
-        </span>
-      </h2>
+    <section v-show='! is_hidden && all_tasks.length' class='w-60'>
+      <div class='flex justify-between items-start'>
+        <h2 class='font-bold mb-2'>
+          {{ title }}
+          <span>
+            ({{ all_tasks.length }})
+          </span>
+        </h2>
+        <button @click='is_hidden=true' v-show='can_hide'>&times;</button>
+      </div>
       <task-tags 
         :init_tags='all_tasks.map(t => t.tag)' 
         v-model:current_tags='current_tags'
@@ -28,16 +31,22 @@ export default {
           :task='a_task'
         ></task>
       </ul>
+      <slot/>
     </section>
   `,
 
   props: {
     all_tasks: Array,
     title: String,
+    can_hide: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   data() {
     return {
+      is_hidden: false,
       show_all: true,
       current_tags: new Set(),
     };

@@ -4,10 +4,11 @@ import TaskForm from './TaskForm.js';
 export default {
 
   template: `
-    <section class='space-y-6'>
-      <task-list :all_tasks='filters.todo_list' title='todo'/>
-      <task-list :all_tasks='filters.done_list' title='done'/>
-      <task-form @myadd='add_item'/>
+    <section class='flex gap-8'>
+      <task-list :all_tasks='filters.todo_list' title='todo'>
+       <task-form @myadd='add_item'/>
+      </task-list>
+      <task-list :all_tasks='filters.done_list' title='done' can_hide/>
     </section>
   `,
 
